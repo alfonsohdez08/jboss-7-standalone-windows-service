@@ -129,11 +129,11 @@ namespace JBoss
 
                 EventLog.WriteEntry("Terminating JBoss in hard manner.", EventLogEntryType.Warning);
                 _standaloneBatProcess.Kill();
-                _standaloneBatProcess = null;
             }
             finally
             {
                 SetServiceStatus(ServiceState.SERVICE_STOPPED);
+                _standaloneBatProcess = null;
             }
 
         }
