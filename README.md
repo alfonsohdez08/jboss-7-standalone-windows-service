@@ -34,7 +34,7 @@ In case you want to uninstall, ensure the service is not running, and run the co
 
 # Usage
 
-Once you installed the service, you're able to start using right away! :smiley: Check below what happen when you start or stop the service:
+Once you have installed the service, you're able to start using right away! :smiley: Check below what happen when you start or stop the service:
 
 - When the service is starting, it's invoking the `standalone.bat` file from `JBoss` for start `JBoss` in the background.
 - When the service is being stoped, it's calling the `jboss-cli.bat` file from `JBoss` with the arguments `--connect command=:shutdown` that sends a signal to the instance running of `JBoss` to shutdown.
