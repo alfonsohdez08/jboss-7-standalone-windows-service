@@ -26,6 +26,8 @@ Clone this repository, and build it in your machine. Open a command prompt as Ad
 > installutil JBoss.exe
 ```
 
+By the way, I don't recommend register the service from the assembly located in your `bin` folder. Instead, copy the assembly and store it in a new folder where you can isolate your service development. 
+
 In case you want to uninstall, ensure the service is not running, and run the command below:
 
 ```
