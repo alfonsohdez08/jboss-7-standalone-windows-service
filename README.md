@@ -22,7 +22,7 @@ Where `windir` is a system environment variable that points to the Windows OS fi
 
 Clone this repository, and build it in your machine. Open a command prompt as Administrator, navigate to the `JBoss` project compilation output folder: `\Jboss\bin\{Debug | Release}` (you can enter either `Debug` or `Release` based on your build configuration), and run the command below to install the service in your machine:
 
-```
+```console
 > installutil JBoss.exe
 ```
 
@@ -30,16 +30,16 @@ By the way, I don't recommend register the service from the assembly located in 
 
 In case you want to uninstall, ensure the service is not running, and run the command below:
 
-```
+```console
 > installutil /u JBoss.exe
 ```
 
-# Usage
+## How the service works internally?
 
 Once you have installed the service, you're able to start using right away! :smiley: Check below what happen when you start or stop the service:
 
-- When the service is starting, it's invoking the `standalone.bat` file from `JBoss` for start `JBoss` in the background.
-- When the service is being stoped, it's calling the `jboss-cli.bat` file from `JBoss` with the arguments `--connect command=:shutdown` that sends a signal to the instance running of `JBoss` to shutdown.
+- When the service is starting, it's invoking the `standalone.bat` batch file for start `JBoss` in the background.
+- When the service is being stoped, it's calling the `jboss-cli.bat` batch file with the arguments `--connect command=:shutdown` that sends a signal to the instance running of `JBoss` to shutdown.
 
 ## Service troubleshooting
 
