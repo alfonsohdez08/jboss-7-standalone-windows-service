@@ -1,6 +1,6 @@
 # JBoss 7 Standalone As Windows Service
 
-This is a simple Windows Service built in **C#** that manages the **JBoss 7 Standalone Server** in terms of starting and shutting down the server.
+This is a simple Windows Service built in C# that manages the **JBoss 7 Standalone Server** in terms of starting and shutting down the server.
 
 # Requirements
 
@@ -51,4 +51,4 @@ If you encounter any issue while using it, don't doubt in creating an issue over
 
 ## Known issues
 
-- In case the `jboss-cli.bat` file isn't found, the `JBoss` can't be stoped even though the main process is killed (the process that started the `JBoss` when the service started).
+- In case the `jboss-cli.bat` file isn't found, the `JBoss` can't be stopped even though the main process is killed (the process that started the `JBoss` when the service itself began).
