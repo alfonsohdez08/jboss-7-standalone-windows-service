@@ -21,7 +21,7 @@ namespace JBoss
         /// <summary>
         /// Environment variable that holds the home directory where JBoss is installed.
         /// </summary>
-        private const string JbossHomeEnv = "JBOSS_HOME";
+        private const string JbossHomeEnvVar = "JBOSS_HOME";
         
         /// <summary>
         /// Waiting time for fetch the service status during starting/stopping the service itself.
@@ -48,13 +48,21 @@ namespace JBoss
         /// </summary>
         public JBossStandaloneService()
         {
-            _jbossHomePath = Environment.GetEnvironmentVariable(JbossHomeEnv);
+            InitializeComponent();
+            
             _serviceStatus = new ServiceStatus()
             {
                 dwWaitHint = TimeSpan.FromSeconds(WaitTimeInSeconds).Milliseconds
             };
+            
+            _jbossHomePath = Environment.GetEnvironmentVariable(JbossHomeEnvVar);
+            if (string.IsNullOrEmpty(_jbossHomePath))
+            {
+                EventLog.WriteEntry($"Can't retrieve the value of the environment variable {JbossHomeEnvVar}. Ensure it exists and has a valid value.", EventLogEntryType.Error);
 
-            InitializeComponent();
+                SetServiceStatus(ServiceState.SERVICE_STOPPED);
+            }
+
         }
 
         /// <summary>
@@ -63,7 +71,7 @@ namespace JBoss
         /// <param name="args">Startup arguments.</param>
         protected override void OnStart(string[] args)
         {
-            string standaloneBatFile = _jbossHomePath + @"\bin\standalone.bat";
+            string standaloneBatFile = Path.Combine(_jbossHomePath, @"\bin\standalone.bat");
 
             try
             {
@@ -100,7 +108,7 @@ namespace JBoss
         /// </summary>
         protected override void OnStop()
         {
-            string jbossCliBatFile = _jbossHomePath + @"\bin\jboss-cli.bat";
+            string jbossCliBatFile = Path.Combine(_jbossHomePath, @"\bin\jboss-cli.bat");
             string shutdownArgs = "--connect command=:shutdown";
 
             try
